@@ -48,9 +48,5 @@ runs:
 
 
     - run: |
-        export OUTPUT=echo $(pre-commit run -a| sed 's/\x1b\[[0-9;]*m//g' | tee output.md)
-        output=$(cat output.md)
-        echo ::set-output name=precommit_output::$output
-        echo Fileoutput $output
-        echo ::debug:: $output
+        pre-commit run -a
       shell: bash
