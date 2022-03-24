@@ -1,0 +1,31 @@
+name: format-terraform-nonDocker
+on: 
+  push:
+    branches:
+      - 'Feature/*'
+  
+  pull_request:
+    branches:
+      - "Feature/*"
+
+
+jobs:
+  pre-commit:
+    name: 'Pre-Commit'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+        with:
+              ref:  Feature/pipelines
+
+      - name: 'Pre-Commit'
+        id: pre-commit
+        continue-on-error: true
+        uses: ./.github/actions/pre-commit
+
+      - name: Comment-push
+        if: github.event_name != 'pull_request'
+        uses: ./.github/actions/commit-comment  #'peter-evans/commit-comment@v1'
+        with:
+          body: ${{ steps.pre-commit.outputs.precommit_output }} 
