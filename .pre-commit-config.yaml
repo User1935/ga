@@ -6,8 +6,6 @@ repos:
       args: [ --fix=lf ]
     - id: trailing-whitespace
       args: [ --markdown-linebreak-ext=* ]
-      file: ^resources/
-      exclude: *.md
     - id: check-yaml
       args: [ --allow-multiple-documents ]
     - id: check-json
