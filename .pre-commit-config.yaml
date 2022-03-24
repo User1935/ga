@@ -6,8 +6,8 @@ repos:
       args: [ --fix=lf ]
     - id: trailing-whitespace
       args: [ --markdown-linebreak-ext=* ]
-    #- id: check-yaml
-    #  args: [ --allow-multiple-documents ]
+    - id: check-yaml
+      args: [ --allow-multiple-documents ]
     #- id: check-json
     #- id: check-merge-conflict
     #- id: double-quote-string-fixer
