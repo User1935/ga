@@ -2,11 +2,11 @@ name: format-terraform-nonDocker
 on: 
   push:
     branches:
-      - 'Feature/*'
+      - 'main'
   
   pull_request:
     branches:
-      - "Feature/*"
+      - "main"
 
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v3
         with:
-              ref:  Feature/pipelines
+              ref:  main
 
       - name: 'Pre-Commit'
         id: pre-commit
