@@ -20,7 +20,7 @@ runs:
     - name: 'dependencies'
       run: |
         pip install html2text
-        python ./dist/script.py $INPUT_FILENAME
+        python ./.github/actions/pre-commit-output/dist/script.py $INPUT_FILENAME
       shell: bash
 
     - name: 'fileContent'
