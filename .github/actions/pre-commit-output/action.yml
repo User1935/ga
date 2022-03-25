@@ -29,5 +29,5 @@ runs:
       run: |
         echo $GITHUB_WORKSPACE
         echo ./something.txt
-        echo "::set-output name=output:: $(cat ./.github/actions/pre-commit-output/dist/script.py)"
+        echo "::set-output name=output:: $(cat ./something.txt)"
       shell: bash
