@@ -48,5 +48,7 @@ runs:
 
 
     - run: |
+        echo "------------------------- [ STARTING PRE-COMMIT ] --------------------"
         pre-commit run -a
+        echo FINISHED PRE-COMMIT
       shell: bash
