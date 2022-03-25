@@ -30,7 +30,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: ./.github/actions/commit-comment  #'peter-evans/commit-comment@v1'
         with:
-          body: $(cat ./something.txt)  # ${{ steps.pre-commit.outputs.output }}
+          body: ${{ steps.pre-commit.outputs.output }}
           
       #- name: Write output for PR
       #  uses: actions/github-script@v4.1.0

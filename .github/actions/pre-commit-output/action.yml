@@ -10,7 +10,7 @@ inputs:
 outputs:
   output:
     description: 'Content of stdout'
-
+    value: ${{ steps.filecontent.outputs.FILECONTENT }}
 
 
 runs:
@@ -26,8 +26,9 @@ runs:
         GITHUB_WORKSPACE: ${{ github.workspace }}
 
     - name: 'fileContent'
+      id: filecontent
       run: |
         echo $GITHUB_WORKSPACE
         echo $(cat ./something.txt)
-        echo "::set-output name=output:: $(cat ./something.txt)"
+        echo "::set-output name=FILECONTENT::$(cat ./something.txt)"
       shell: bash
