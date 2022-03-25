@@ -50,7 +50,12 @@ runs:
     - run: |
         echo "------------------------- [ STARTING PRE-COMMIT ] --------------------"
         pre-commit run -a | tee something.txt
+      shell: bash
+      continue-on-error: true
+
+    - run: |
         echo $(cat something.txt)
         echo ::set-output name=output::$(cat something.txt)
         echo FINISHED PRE-COMMIT
       shell: bash
+
