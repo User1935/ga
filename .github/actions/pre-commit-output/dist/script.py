@@ -12,12 +12,13 @@ path2file = "./.github/actions/pre-commit-output/dist/script.py"
 with open (path2file, "r") as myfile:
     data=myfile.readlines()
 
-bodydata = h.handle(data)
-bodydata = bodydata.replace('\n\n', '\n')
-arraydata = bodydata.split('\n')
+#bodydata = h.handle(data)
+#bodydata = bodydata.replace('\n\n', '\n')
+#arraydata = bodydata.split('\n')
 
 finalstring = '# Pre-Commit Log 📈\n'
-for s in arraydata:
+for s in data:
+    s = h.handle(s)
     if not ('[INFO]' in s):
         if('Failed' in s or 'Passed' in s or 'Skipped' in s ):
             finalstring += '</pre></details><summary>' + s + '</summary><pre>'
