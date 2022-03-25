@@ -20,7 +20,7 @@ jobs:
         id: pre-commit
         run: |
           sudo apt-get install colorized-logs
-          something.txt | ansi2html > temp.html
+          ansi2html < something.txt | base64 > temp.html
           echo "::debug:: Setting Output"
           echo ::set-output name=output:: $(cat temp.html)
 
