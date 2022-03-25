@@ -38,8 +38,7 @@ runs:
         && chmod +x tfsec
       shell: bash
 
-    - id: random-number-generator
-      run: |
+    - run: |
         echo "dep" >> $GITHUB_PATH \
         export PATH="${PATH}:${{ github.workspace }}/dep"
         echo "$PATH"

@@ -1,0 +1,29 @@
+name: "Pre-commit"
+description: 'Run and Settup Pre-commit'
+
+inputs:
+  filename:
+    description: "Name of file previously inserted with pre-commit output."
+    required: false
+    default: 'something.txt'
+
+outputs:
+  output:
+    description: 'Content of stdout'
+
+
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: 'dependencies'
+      run: |
+        pip install html2text
+        python ./dist/script.py $INPUT_FILENAME
+      shell: bash
+
+    - name: 'fileContent'
+      run: |
+        echo "::set-output name=output:: $(cat $INPUT_FILENAME)"
+      shell: bash

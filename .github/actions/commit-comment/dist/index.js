@@ -8592,7 +8592,7 @@ async function run() {
       token: core.getInput("token"),
       repository: core.getInput("repository"),
       sha: core.getInput("sha"),
-      body: data, //core.getInput("body"),
+      body: core.getInput("body"), //data, //
       path: core.getInput("path"),
       position: core.getInput("position"),
     };
