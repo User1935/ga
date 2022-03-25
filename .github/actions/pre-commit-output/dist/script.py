@@ -14,7 +14,7 @@ print(path2file)
 with open (path2file, "r") as myfile:
     data=myfile.readlines()
 
-#bodydata = h.handle(data)
+##bodydata = h.handle(data)
 #bodydata = bodydata.replace('\n\n', '\n')
 #arraydata = bodydata.split('\n')
 
