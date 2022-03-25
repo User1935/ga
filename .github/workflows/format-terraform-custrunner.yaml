@@ -17,37 +17,38 @@ jobs:
         continue-on-error: true
         uses: ./.github/actions/pre-commit
 
-      #- name: Comment-push
-      #  if: github.event_name != 'pull_request'
-      #  uses: ./.github/actions/commit-comment  #'peter-evans/commit-comment@v1'
-      #  with:
-      #    body: $OUTPUT
-          
-      - name: Write output for PR
-        uses: actions/github-script@v4.1.0
+      - name: Comment-push
+        if: github.event_name != 'pull_request'
+        uses: ./.github/actions/commit-comment  #'peter-evans/commit-comment@v1'
         with:
-          script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ needs.format.outputs.fmtout }}\`
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-            <details><summary>Show Plan Summary</summary>
-            
-            \`\`\`
-            ${{ steps.changes.outputs.changes }}
-            \`\`\`
-             </details>
-            <details><summary>Show Full Log</summary>
-            
-            \`\`\`
-            ${{ steps.plan.outputs.logplan }}
-            \`\`\`
-            
-            </details>
-            
-            View command outputs via Artifacts [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: "'"$OUTPUT"'"
-            })
+          body: ${{ steps.pre-commit.outputs.output }}
+          
+      #- name: Write output for PR
+      #  uses: actions/github-script@v4.1.0
+      #  with:
+      #    script: |
+      #      const output = `#### Terraform Format and Style 🖌\`${{ needs.format.outputs.fmtout }}\`
+      #      #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+      #      <details><summary>Show Plan Summary</summary>
+      #      
+      #      \`\`\`
+      #      ${{ steps.changes.outputs.changes }}
+      #      \`\`\`
+      #       </details>
+      #      <details><summary>Show Full Log</summary>
+      #      
+      #      \`\`\`
+      #      ${{ steps.plan.outputs.logplan }}
+      #      \`\`\`
+      #      
+      #      </details>
+      #      
+      #      View command outputs via Artifacts [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+      #      *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+      #      github.issues.createComment({
+      #        issue_number: context.issue.number,
+      #        owner: context.repo.owner,
+      #        repo: context.repo.repo,
+      #        body: "'"$OUTPUT"'"
+      #      })
+#
