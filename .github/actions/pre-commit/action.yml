@@ -49,6 +49,7 @@ runs:
 
     - run: |
         echo "------------------------- [ STARTING PRE-COMMIT ] --------------------"
-        pre-commit run -a
+        pre-commit run -a | tee something.txt
+        echo ::set-output name=filecontent::$(cat something.txt)
         echo FINISHED PRE-COMMIT
       shell: bash
