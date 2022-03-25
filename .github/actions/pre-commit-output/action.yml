@@ -25,5 +25,5 @@ runs:
 
     - name: 'fileContent'
       run: |
-        echo "::set-output name=output:: $(cat $INPUT_FILENAME)"
+        echo "::set-output name=output:: $(cat ./.github/actions/pre-commit-output/dist/script.py)"
       shell: bash
