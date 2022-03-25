@@ -10,6 +10,7 @@ h = html2text.HTML2Text()
 
 #if (sys.argv[1] != ''):
 path2file = os.environ['GITHUB_WORKSPACE'] + "/something.txt"
+print(path2file)
 with open (path2file, "r") as myfile:
     data=myfile.readlines()
 
