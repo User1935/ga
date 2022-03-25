@@ -8,7 +8,7 @@ import sys
 h = html2text.HTML2Text()
 
 #if (sys.argv[1] != ''):
-path2file = "../" + sys.argv[1] 
+path2file = "./.github/actions/pre-commit-output/dist/script.py"
 with open (path2file, "r") as myfile:
     data=myfile.readlines()
 
