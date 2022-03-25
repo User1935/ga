@@ -48,6 +48,7 @@ runs:
 
     - run: |
         echo "------------------------- [ STARTING PRE-COMMIT ] --------------------"
+        echo $(pwd)
         pre-commit run -a | tee something.txt
       shell: bash
 
