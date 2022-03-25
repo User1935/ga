@@ -16,14 +16,16 @@ jobs:
         continue-on-error: true
         uses: ./.github/actions/pre-commit
 
-      - name: 'get outputs'
+      - name: 'Pre-Commit_Output'
         id: pre-commit
-        run: |
-          sudo apt-get install colorized-logs
-          ansi2html < something.txt | base64 > temp.html
-          echo "::debug:: Setting Output"
-          echo ::set-output name=output:: $(cat temp.html)
-
+        uses: ./.github/actions/pre-commit-output
+     
+        #run: |
+        #  sudo apt-get install colorized-logs
+        #  ansi2html < something.txt | base64 > temp.html
+        #  echo "::debug:: Setting Output"
+        #  echo ::set-output name=output:: $(cat temp.html)
+#
       - name: Comment-push
         if: github.event_name != 'pull_request'
         uses: ./.github/actions/commit-comment  #'peter-evans/commit-comment@v1'
