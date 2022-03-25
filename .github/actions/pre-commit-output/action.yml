@@ -28,6 +28,6 @@ runs:
     - name: 'fileContent'
       run: |
         echo $GITHUB_WORKSPACE
-        echo ./something.txt
+        echo $(cat ./something.txt)
         echo "::set-output name=output:: $(cat ./something.txt)"
       shell: bash

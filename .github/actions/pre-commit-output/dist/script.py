@@ -23,6 +23,8 @@ for s in data:
     if not ('[INFO]' in s):
         if('Failed' in s or 'Passed' in s or 'Skipped' in s ):
             finalstring += '</pre></details><summary>' + s + '</summary><pre>'
+        else:
+            finalstring += s
 finalstring += '</pre></details>'
 
 with open (path2file, "w") as myfile:
