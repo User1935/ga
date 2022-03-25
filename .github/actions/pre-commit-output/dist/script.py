@@ -19,18 +19,15 @@ with open (path2file, "r") as myfile:
 #arraydata = bodydata.split('\n')
 
 finalstring = '# Pre-Commit Log 📈\n'
-flag = False
+
 for s in data:
     #s = h.handle(s)
-    if('</style>' in s):
-        flag = True
-    if(flag):
-        print(s)
-        if not ('[INFO]' in s):
-            if('Failed' in s or 'Passed' in s or 'Skipped' in s ):
-                finalstring += '</pre></details><summary>' + s + '</summary><pre>'
-            else:
-                finalstring += s
+    print(s)
+    if not ('[INFO]' in s):
+        if('Failed' in s or 'Passed' in s or 'Skipped' in s ):
+            finalstring += '</pre></details><summary>' + s + '</summary><pre>'
+        else:
+            finalstring += s
 finalstring += '</pre></details>'
 
 with open (path2file, "w") as myfile:
