@@ -1,5 +1,6 @@
 import html2text
 import sys
+import os
 
 # This script will format arg[1] text to a valid markdown language
 # [INPUT] : arg1 -- html file
@@ -8,7 +9,7 @@ import sys
 h = html2text.HTML2Text()
 
 #if (sys.argv[1] != ''):
-path2file = "./something.txt"
+path2file = os.environ['GITHUB_WORKSPACE'] + "/.github/actions/pre-commit/something.txt"
 with open (path2file, "r") as myfile:
     data=myfile.readlines()
 

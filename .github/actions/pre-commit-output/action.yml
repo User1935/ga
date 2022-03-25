@@ -22,8 +22,12 @@ runs:
         pip install html2text
         python ./.github/actions/pre-commit-output/dist/script.py $INPUT_FILENAME
       shell: bash
+      env:
+        GITHUB_WORKSPACE: ${{ github.workspace }}
 
     - name: 'fileContent'
       run: |
+        echo $GITHUB_WORKSPACE
+        echo ./something.txt
         echo "::set-output name=output:: $(cat ./.github/actions/pre-commit-output/dist/script.py)"
       shell: bash
