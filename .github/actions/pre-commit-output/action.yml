@@ -20,7 +20,7 @@ runs:
     - name: 'dependencies'
       run: |
         pip install html2text
-        python ./.github/actions/pre-commit-output/dist/script.py $INPUT_FILENAME
+        echo $(python ./.github/actions/pre-commit-output/dist/script.py)
       shell: bash
       env:
         GITHUB_WORKSPACE: ${{ github.workspace }}
