@@ -8587,6 +8587,7 @@ function getSha() {
 function getFromFile(){
   let fs = require('fs');
   let path = process.env.GITHUB_WORKSPACE  + "/something.txt";
+  console.log('::debug::' + path)
   fs.readFile(path, 'utf8', function (err,data) {
     if (err) { 
       return console.log(err); 
