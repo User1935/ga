@@ -8598,41 +8598,50 @@ function getFromFile(){
   });
 }
 async function run() {
-  try {
-    //let buff = new Buffer.from(core.getInput("body"), 'base64');
-    let data = getFromFile();
-    console.log('::debug:: outside ' + data)
-    //let data = buff.toString('utf8');
-    const inputs = {
-      token: core.getInput("token"),
-      repository: core.getInput("repository"),
-      sha: core.getInput("sha"),
-      body: data, //core.getInput("body"), //data, //
-      path: core.getInput("path"),
-      position: core.getInput("position"),
-    };
-    core.debug(`Inputs: ${inspect(inputs)}`);
+  let fs = require('fs');
+  let path = process.env.GITHUB_WORKSPACE  + "/something.txt";
+  
+  fs.readFile(path, 'utf8', function (err,data) {
+    if (err) { 
+      console.log('::debug::fail ' + path)
+      return console.log(err); 
+      }
+    try {
+      //let buff = new Buffer.from(core.getInput("body"), 'base64');
+      let data = getFromFile();
+      console.log('::debug:: outside ' + data)
+      //let data = buff.toString('utf8');
+      const inputs = {
+        token: core.getInput("token"),
+        repository: core.getInput("repository"),
+        sha: core.getInput("sha"),
+        body: data, //core.getInput("body"), //data, //
+        path: core.getInput("path"),
+        position: core.getInput("position"),
+      };
+      core.debug(`Inputs: ${inspect(inputs)}`);
 
-    const [owner, repo] = inputs.repository.split("/");
+      const [owner, repo] = inputs.repository.split("/");
 
-    const sha = inputs.sha ? inputs.sha : getSha();
-    core.debug(`SHA: ${sha}`);
+      const sha = inputs.sha ? inputs.sha : getSha();
+      core.debug(`SHA: ${sha}`);
 
-    const octokit = github.getOctokit(inputs.token);
+      const octokit = github.getOctokit(inputs.token);
 
-    await octokit.rest.repos.createCommitComment({
-      owner: owner,
-      repo: repo,
-      commit_sha: sha,
-      body: inputs.body,
-      path: inputs.path,
-      position: inputs.position
-    });
-  } catch (error) {
-    core.debug(inspect(error));
-    core.setFailed(error.message);
+      await octokit.rest.repos.createCommitComment({
+        owner: owner,
+        repo: repo,
+        commit_sha: sha,
+        body: inputs.body,
+        path: inputs.path,
+        position: inputs.position
+      });
+    } catch (error) {
+      core.debug(inspect(error));
+      core.setFailed(error.message);
+    }
+  });
   }
-}
 
 run();
 
