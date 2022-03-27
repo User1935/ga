@@ -8608,7 +8608,7 @@ async function run() {
       }
     try {
       //let buff = new Buffer.from(core.getInput("body"), 'base64');
-      let data = getFromFile();
+      //let data = getFromFile();
       console.log('::debug:: outside ' + data)
       //let data = buff.toString('utf8');
       const inputs = {
