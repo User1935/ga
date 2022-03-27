@@ -17,8 +17,8 @@ with open (path2file, "r") as myfile:
 ##bodydata = h.handle(data)
 #bodydata = bodydata.replace('\n\n', '\n')
 #arraydata = bodydata.split('\n')
-
-finalstring = '# Pre-Commit Log 📈\n'
+#📈
+finalstring = '# Pre-Commit Log \n'
 
 for s in data:
     #s = h.handle(s)
