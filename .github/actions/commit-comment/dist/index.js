@@ -8589,7 +8589,6 @@ async function run() {
 
   try {
     let buff = new Buffer.from(core.getInput("body"), 'base64');
-    console.log('::debug:: outside ' + data)
     let data = buff.toString('utf8');
     const inputs = {
       token: core.getInput("token"),
