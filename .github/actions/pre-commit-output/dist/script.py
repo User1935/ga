@@ -1,6 +1,7 @@
 import html2text
 import sys
 import os
+import base64
 
 # This script will format arg[1] text to a valid markdown language
 # [INPUT] : arg1 -- html file
@@ -29,8 +30,10 @@ for s in data:
         else:
             finalstring += s
 finalstring += '</pre></details>'
+message_bytes = finalstring.encode('utf-8')
+base64_bytes = str(base64.b64encode(message_bytes))[2:-1]
 
 with open (path2file, "w") as myfile:
-    myfile.write(finalstring)
+    myfile.write(base64_bytes)
 #else:
  #   print('Please add the file as argument. script.py [FILE_NAME]')

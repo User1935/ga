@@ -8584,26 +8584,13 @@ function getSha() {
   }
 }
 
-async function getFromFile(){
-  let fs = require('fs');
-  let path = process.env.GITHUB_WORKSPACE  + "/something.txt";
-  
-  fs.readFile(path, 'utf8', function (err,data) {
-    if (err) { 
-      console.log('::debug::fail ' + path)
-      return console.log(err); 
-      }
-      console.log('::debug::success ' + path)
-    return data; 
-  });
-}
+
 async function run() {
 
   try {
-    //let buff = new Buffer.from(core.getInput("body"), 'base64');
-    let data = await getFromFile();
+    let buff = new Buffer.from(core.getInput("body"), 'base64');
     console.log('::debug:: outside ' + data)
-    //let data = buff.toString('utf8');
+    let data = buff.toString('utf8');
     const inputs = {
       token: core.getInput("token"),
       repository: core.getInput("repository"),
@@ -8634,7 +8621,7 @@ async function run() {
     core.setFailed(error.message);
   }
 }
-
+var data = getFromFile();
 run();
 
 })();
