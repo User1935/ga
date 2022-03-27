@@ -8587,11 +8587,13 @@ function getSha() {
 function getFromFile(){
   let fs = require('fs');
   let path = process.env.GITHUB_WORKSPACE  + "/something.txt";
-  console.log('::debug::' + path)
+  
   fs.readFile(path, 'utf8', function (err,data) {
     if (err) { 
+      console.log('::debug::fail ' + path)
       return console.log(err); 
       }
+      console.log('::debug::success ' + path)
     return data; 
   });
 }
@@ -8599,7 +8601,7 @@ async function run() {
   try {
     //let buff = new Buffer.from(core.getInput("body"), 'base64');
     let data = getFromFile();
-    
+    console.log('::debug:: outside ' + data)
     //let data = buff.toString('utf8');
     const inputs = {
       token: core.getInput("token"),
