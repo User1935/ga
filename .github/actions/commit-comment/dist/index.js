@@ -8621,7 +8621,7 @@ async function run() {
     core.setFailed(error.message);
   }
 }
-var data = getFromFile();
+
 run();
 
 })();
