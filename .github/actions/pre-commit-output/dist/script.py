@@ -25,7 +25,7 @@ for s in data:
     print(s)
     if not ('[INFO]' in s):
         if('Failed' in s or 'Passed' in s or 'Skipped' in s ):
-            finalstring += '</pre></details><summary>' + s + '</summary><pre>'
+            finalstring += '</pre></details><details><summary>' + s + '</summary>\n<pre>'
         else:
             finalstring += s
 finalstring += '</pre></details>'
